@@ -210,7 +210,7 @@ function [Fin_abund_sim_PVE, Fin_abund_sim_PPU, kappa_mat, mean_PVE_fin_props, F
     l_2 = polyfit(x,y,1); y_est_2 = polyval(l_2,x);
     hold on 
     plot(x,y_est_2,'r--','LineWidth',1)
-    ylim([10^(-5) 11*10^(-5)])
+    ylim([0*10^(-5) 11*10^(-5)])
     xlim([0 8*10^(-5)])
 
     if save_data == 1
