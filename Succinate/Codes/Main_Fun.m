@@ -181,7 +181,7 @@ function [Fin_abund_sim_PVE, Fin_abund_sim_PPU, kappa_mat, mean_PVE_fin_props, F
     xaxis = [1/100 1/10 1 10 100];
     errorbar(log10(xaxis(num_ratio_min: num_ratio_max)), mean_sim, std_sim,'r--o','MarkerSize',1,'LineWidth', 1,'MarkerEdgeColor','black','MarkerFaceColor','black'); %Experiment with the 5 ratios
     title('Boxplot ratio simulations/observations for P.veronii')
-    ylim([0.5 1.6])
+    ylim([0 1.6])
     xlabel('Initial ratio')
     ylabel('Final ratio simulation/observation')
 
