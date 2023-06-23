@@ -62,7 +62,7 @@ fun_Monod_Hill <- function(t, state, parms, parms_est, index){
 
 fun_Monod_Inhibition <- function(t, state, parms, parms_est, index){
   with(as.list(c(state, parms, parms_est)), {
-    Hill_Coeff_1 = 1/(1 + (threshold_1/w_2)^k_1);  Hill_Coeff_2 = 1/(1 + (threshold_2/w_1)^k_1);
+    Hill_Coeff_1 = 0*1/(1 + (threshold_1/w_2)^k_1);  Hill_Coeff_2 = 1/(1 + (threshold_2/w_1)^k_1);
     dx_1 = (2*kappa_12 + kappa_13)*y_1 - kappa_11*x_1*r - Hill_Coeff_1*kappa_14*x_1*w_2
     dx_2 = (2*kappa_22 + kappa_23)*y_2 - kappa_21*x_2*r - Hill_Coeff_2*kappa_24*x_2*w_1
     dy_1 = -(kappa_12 + kappa_13)*y_1 + kappa_11*x_1*r
@@ -95,12 +95,12 @@ ModelCost <- function(P) {
     x_20 = Data_Tania[i,4] #x_0 Ppu
     parameters_temp = c(parameters, x_10, x_20)
     state = c(x_1 = x_10, x_2 = x_20, y_1 = 0, y_2 = 0, w_1 = 0, w_2 = 0, r = 2.4*10^(-4))
-    out <- ode(y = state, func = fun_Monod_Hill, parms = parameters_temp,  parms_est = P, index = i, times = TT, atol = 1e-9, rtol = 1e-9)
+    out <- ode(y = state, func = fun_Monod_Inhibition, parms = parameters_temp,  parms_est = P, index = i, times = TT, atol = 1e-9, rtol = 1e-9)
     model = out[length(out[,1]),]
     Ppu_fin = model[3] + model[5] #Final Ppu biomass
     model = model[2] + model[4] #Final Pve biomass
-    diff = c(diff, abs(Data_Tania[i,2] - model)) #For Absolute biomass
-    # diff = c(diff, abs(Data_Tania[i,2] - model) + abs(Data_Tania[i,5] - Ppu_fin)) #For Absolute biomass considering Pve and Ppu
+    # diff = c(diff, abs(Data_Tania[i,2] - model)) #For Absolute biomass
+    diff = c(diff, abs(Data_Tania[i,2] - model) + abs(Data_Tania[i,5] - Ppu_fin)) #For Absolute biomass considering Pve and Ppu
     # diff = c(diff, abs((Data_Tania[i,2]/(Data_Tania[i,2] + Data_Tania[i,5])) - model/(model + Ppu_fin)) + abs(Data_Tania[i,2] - model) + abs(Data_Tania[i,5] - Ppu_fin)) #For ratio
   }
   Data_Tania_2 = Data_Tania[,1:2]
