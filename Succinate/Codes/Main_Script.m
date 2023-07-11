@@ -44,10 +44,10 @@ std_kappa_1 = [0 0]; %Standard deviation kappa_1.
 %100:1, 10:1, 1:1, 1:10, 1:100
 %T(1,:) for used of W_2 by PVE, T(2,:) for used of W_1 by PPU
 %Indicative function
-Threshold = [1.397e-04 1.397e-04 1.397e-04 1.397e-04 1.4345e-04; 6.5e-05 1.0e-05 2.8e-05 2.8e-05 2.8e-05];
+% Threshold = [1.397e-04 1.397e-04 1.397e-04 1.397e-04 1.4345e-04; 6.5e-05 1.0e-05 2.8e-05 2.8e-05 2.8e-05];
 % Threshold = [1.43e-04 1.43e-04 1.43e-04 1.43e-04 1.43e-04; 2.8e-05 2.8e-05 2.8e-05 2.8e-05 2.8e-05];
 %Sigmoid function
-% Threshold = [1.726828e-04 1.726828e-04 1.726828e-04 1.726828e-04 1.726828e-04; 4.728681e-05 4.728681e-05 4.728681e-05 4.728681e-05 4.728681e-05];%
+Threshold = [1.726828e-04 1.726828e-04 1.726828e-04 1.726828e-04 1.726828e-04; 4.728681e-05 4.728681e-05 4.728681e-05 4.728681e-05 4.728681e-05];%
 % Inhibition function
 % Threshold = [8.854093e-05 8.854093e-05 8.854093e-05 8.854093e-05 8.854093e-05; 2.189977e-04 2.189977e-04 2.189977e-04 .189977e-04 2.189977e-04];% Bilateral inhibition
 % Threshold = [2.700000e-04 2.700000e-04 2.700000e-04 2.700000e-04 2.700000e-04; 9.029489e-04 9.029489e-04 9.029489e-04 9.029489e-04 9.029489e-04];% Unilateral inhibition
@@ -59,7 +59,7 @@ Time_step = 0:0.25:24; %Time step, 0:0.25:24 corresponds to the real measurement
 %% Test 5 ratios
 close all
 
-Name_Model = @fun_Monod_tot; %Type of the function to test. Description in the corresponding function file.
+Name_Model = @fun_Hill_HandlingTime; %Type of the function to test. Description in the corresponding function file.
 
 num_ratio_min = 1; %Number of the ratio tested. In experiment, there are 5 different ratios 100:1, 10:1, 1:1, 1:10, 1:100.
 num_ratio_max = 5;
