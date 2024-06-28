@@ -20,11 +20,7 @@ This folder contains MATLAB codes for simulating our model, and a "Fitting" fold
 
 **Fitting folder**: Growth kinetics associted to each species are fitted on monocultures using the script named "ParamInfv2.m". Parameters corresponding to cross-feeding on byproducts are fitted on co-cultures using the R script named "ThresholdFitting.R". The last script in the folder is designed to compare simulated biomass to observed biomass.
 
-## Model description
-
-**Monoculture** In a mono-culture with one nutrient, we assume species grow according to their growth kinetics by consuming the resource. A part of the consumed resource will be used for growth, while another part will be released as byproducts. The corresponding hemical reactions are,
-S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i
-To simulate monoculture, the same functions as in co-cultures can be used; only the initial concentration of one of the two species should be set to 0.
+## Models description
 
 **Coculture** In co-cultures, in addition to the consumption of the primary resource according to intrinsic growth kinetics, we assume the possibility of cross-feeding or inhibition. Several functions can be chosen according to the desired model to simulate. They are,
 1) fun_Hill_HandlingTime, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. Model with different wastes produced by each species. The waste produced by the other species can be used when its concentration is above a certain threshold. The threshold depends on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
@@ -45,8 +41,9 @@ The biomass are defined as,
 
 The choice of the model as well as the growth kinteics rates and interactions can be modified in the the "Main_Script.m" script.
 
-%z(1), dx_1: biomass bacterial species 1. z(2), dx_2: biomass bacterial
-%species 2. z(3), dy_1: biomass complex. z(4), dy_2: biomass complex.
-%z(5), dw_1 biomass waste produced by species 1 that can be used by species
-%2. z(6), dw_2: biomass waste produced by species 2 that can be used by
-%species 1. z(7), dr: biomass resource.
+**Monoculture** In a mono-culture with one nutrient, we assume species grow according to their growth kinetics by consuming the resource. A part of the consumed resource will be used for growth, while another part will be released as byproducts. The corresponding chemical reactions are,
+S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i
+
+To simulate monoculture, the same functions as in co-cultures can be used; only the initial concentration of one of the two species should be set to 0.
+
+
