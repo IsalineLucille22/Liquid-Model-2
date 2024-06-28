@@ -2,7 +2,7 @@
 
 ## Overview
 
-The different scripts are created in order to simulate mono or co-culture of Pseudomonas veronii and Pseudomonas putida in an homogeneous liquid suspension. With these scripts, you can especially test the effect of initial abundances, growth kinetics parameters and cross-feeding on the stationary state. 
+The different scripts are created in order to simulate mono or co-culture of *Pseudomonas veronii* and *Pseudomonas putida* in an homogeneous liquid suspension. With these scripts, you can especially test the effect of initial abundances, growth kinetics parameters and cross-feeding on the stationary state. 
 The repository contains two folders. One folder is for experiments with a single resource, succinate, which is consumable by both species, leading to competition. The second folder contains data and scripts for experiments with two resources, putrescine and D-mannitol, each of which can be consumed by only one species.
 
 ## Link to BioRXiv
@@ -12,7 +12,7 @@ https://www.biorxiv.org/content/10.1101/2023.02.09.527847v1
 
 ## Succinate
 
-This folder contains MATLAB codes for simulating our model, and a "Fitting" folder with MATLAB and R scripts used to fit our model parameters. The CoCultSimv2, SimCocultVarB0 and Main_Script are the script to be run to simulate the experiments. Parameters initialization for the different model are defined in these scripts.
+This folder contains MATLAB codes for simulating our models for a system composed of two species and one nutrient. It also contains a "Fitting" folder with MATLAB and R scripts used to fit our models parameters. The scripts CoCultSimv2, SimCocultVarB0, and Main_Script are to be run to simulate the experiments. They contain all the parameter initialization and the selection of the chosen model.
 
 **SimCocultVarB0**: Simulations of co-culture experiments starting with different initial ratios or abundances for each species using a model without cross-feeding. The only interactions are due to competition for the resource based on individual growth kinetics. Part of the script compares steady-state predictions with simulated time series produced by the model.
 
@@ -45,4 +45,23 @@ The choice of the model as well as the growth kinteics rates and interactions ca
 S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i.  
 To simulate monoculture, the same functions as in co-cultures can be used; only the initial concentration of one of the two species should be set to 0.
 
+## PutresineDMan
+
+This folder contains MATLAB codes for simulating our models for a system composed of two species and two independent nutrients. It also contains a "Fitting" folder with MATLAB and R scripts used to fit our models parameters.
+
+## Models description
+
+1) fun_Hill_HandlingTime, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+2) fun_Hill_HandlingTimev2, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+3) fun_Hill_HandlingTimev3, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. In this model, *P.veronii* can use its own byproduct.
+
+The biomass are defined as,
+1) z(1), dx_1: biomass bacterial species 1.
+2) z(2), dx_2: biomass bacterial species 2.
+3) z(3), dy_1: biomass complex.
+4) z(4), dy_2: biomass complex.
+5) z(5), dw_1 biomass waste produced by species 1 that can be used by species2.
+6)  z(6), dw_2: biomass waste produced by species 2 that can be used by species 1.
+7)  z(7), dr_1: biomass resource 1.
+8)  z(8) dr_2: biomass resource 2.
 
