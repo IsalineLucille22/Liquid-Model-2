@@ -22,14 +22,15 @@ This folder contains MATLAB codes for simulating our model, and a "Fitting" fold
 
 ## Model description
 
-**Monoculture** In mono-culture with one nutrient, we assume species to growth according to their growth kinetics by consumption of the resources. A part of the consumed resource will be used to growth another part will be release as byproducts. The corresponding hemical reactions are,
+**Monoculture** In a mono-culture with one nutrient, we assume species grow according to their growth kinetics by consuming the resource. A part of the consumed resource will be used for growth, while another part will be released as byproducts. The corresponding hemical reactions are,
 S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i
+To simulate monoculture, the same functions as in co-cultures can be used; only the initial concentration of one of the two species should be set to 0.
 
 **Coculture** In co-cultures, in addition to the consumption of the primary resource according to intrinsic growth kinetics, we assume the possibility of cross-feeding or inhibition. Several functions can be chosen according to the desired model to simulate. They are,
-1) fun_Hill_HandlingTime, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
-2) fun_Inhibition, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> F.
-3) fun_Monod_tot_Death_rate, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j, S_i -> 0. The last reaction corresponds to cell death rate (alpha).
-4) fun_Monod_tot, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+1) fun_Hill_HandlingTime, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. Model with different wastes produced by each species. The waste produced by the other species can be used when its concentration is above a certain threshold. The threshold depends on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
+2) fun_Inhibition, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> F. Model with different wastes produced by each species. The waste produced by the other species inhibits the development of the species consuming it when its concentration is above a certain threshold. The threshold depends on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
+3) fun_Monod_tot_Death_rate, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j, S_i -> 0. The last reaction corresponds to cell death rate (alpha). Model with different wastes produced by each species. The waste produced by the other species can be used when its concentration is above a certain threshold. The threshold depends on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
+4) fun_Monod_tot, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. Model with different wastes produced by each species. The waste produced by the other species can be used when its concentration is above a certain threshold. The threshold depends on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
 5) fun_Type_III, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
 6) fun_Unique_Waste, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W, S_j + W -> P_j. Model with one unique waste produced by each species. The waste produced can be used by both species with a different rate, when its concentration is above a certain threshold. The threshold does not depend on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
 
