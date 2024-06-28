@@ -42,8 +42,7 @@ The biomass are defined as,
 The choice of the model as well as the growth kinteics rates and interactions can be modified in the the "Main_Script.m" script.
 
 **Monoculture** In a mono-culture with one nutrient, we assume species grow according to their growth kinetics by consuming the resource. A part of the consumed resource will be used for growth, while another part will be released as byproducts. The corresponding chemical reactions are,
-S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i
-
+S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i.  
 To simulate monoculture, the same functions as in co-cultures can be used; only the initial concentration of one of the two species should be set to 0.
 
 
