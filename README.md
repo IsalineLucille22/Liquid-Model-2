@@ -19,3 +19,33 @@ This folder contains MATLAB codes for simulating our model, and a "Fitting" fold
 **CoCultSimv2**: This script simulates co-culture or monoculture experiments with the entire time-step evolution measured (10 replicates and 96 time steps). It is designed to compare simulations with observed data that include monocultures of PVE and PPU, as well as co-cultures with only a 1:1 ratio between the initial biomass of the two species. To simulate and compare other initial ratios between the two species, use the script named "Main_Script".
 
 **Fitting folder**: Growth kinetics associted to each species are fitted on monocultures using the script named "ParamInfv2.m". Parameters corresponding to cross-feeding on byproducts are fitted on co-cultures using the R script named "ThresholdFitting.R". The last script in the folder is designed to compare simulated biomass to observed biomass.
+
+## Model description
+
+**Monoculture** In mono-culture with one nutrient, we assume species to growth according to their growth kinetics by consumption of the resources. A part of the consumed resource will be used to growth another part will be release as byproducts. The corresponding hemical reactions are,
+S_i + R -> P_i -> 2S_i, P_i -> S_i + W_i
+
+**Coculture** In co-cultures, in addition to the consumption of the primary resource according to intrinsic growth kinetics, we assume the possibility of cross-feeding or inhibition. Several functions can be chosen according to the desired model to simulate. They are,
+1) fun_Hill_HandlingTime, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+2) fun_Inhibition, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> F.
+3) fun_Monod_tot_Death_rate, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j, S_i -> 0. The last reaction corresponds to cell death rate (alpha).
+4) fun_Monod_tot, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+5) fun_Type_III, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+6) fun_Unique_Waste, Model: S_i + R -> P_i -> 2S_i, P_i <-> S_i + W, S_j + W -> P_j. Model with one unique waste produced by each species. The waste produced can be used by both species with a different rate, when its concentration is above a certain threshold. The threshold does not depend on the species and the detection function takes indicative form: max(z(j) - threshold(i), 0)/(z(j) - threshold(i))
+
+The biomass are defined as,
+1) z(1), dx_1: biomass bacterial species 1.
+2) z(2), dx_2: biomass bacterial species 2.
+3) z(3), dy_1: biomass complex.
+4) z(4), dy_2: biomass complex.
+5) z(5), dw_1 biomass waste produced by species 1 that can be used by species 2.
+6) z(6), dw_2: biomass waste produced by species 2 that can be used by species 1.
+7) z(7), dr: biomass resource.
+
+The choice of the model as well as the growth kinteics rates and interactions can be modified in the the "Main_Script.m" script.
+
+%z(1), dx_1: biomass bacterial species 1. z(2), dx_2: biomass bacterial
+%species 2. z(3), dy_1: biomass complex. z(4), dy_2: biomass complex.
+%z(5), dw_1 biomass waste produced by species 1 that can be used by species
+%2. z(6), dw_2: biomass waste produced by species 2 that can be used by
+%species 1. z(7), dr: biomass resource.
