@@ -53,7 +53,7 @@ This folder contains MATLAB codes for simulating our models for a system compose
 
 The differences between the following functions are the way the resources and byproducts can be consumed.
 1) fun_Hill_HandlingTime, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
-2) fun_Hill_HandlingTimev2, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. In this model, *P.veronni* can consume Putrescine after some time Lag_T.
+2) fun_Hill_HandlingTimev2, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. In this model, *P.veronni* can consume Putrescine after some time defined by Lag_T.
 3) fun_Hill_HandlingTimev3, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. In this model, *P.veronii* can use its own byproduct.
 
 The biomass are defined as,
