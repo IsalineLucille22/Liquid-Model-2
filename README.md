@@ -51,8 +51,9 @@ This folder contains MATLAB codes for simulating our models for a system compose
 
 ## Models description
 
+The differences between the following functions are the way the resources and byproducts can be consumed.
 1) fun_Hill_HandlingTime, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
-2) fun_Hill_HandlingTimev2, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j.
+2) fun_Hill_HandlingTimev2, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. In this model, *P.veronni* can consume Putrescine after some time Lag_T.
 3) fun_Hill_HandlingTimev3, Model: S_i + R_i -> P_i -> 2S_i, P_i <-> S_i + W_i, S_j + W_i -> P_j. In this model, *P.veronii* can use its own byproduct.
 
 The biomass are defined as,
@@ -61,7 +62,7 @@ The biomass are defined as,
 3) z(3), dy_1: biomass complex.
 4) z(4), dy_2: biomass complex.
 5) z(5), dw_1 biomass waste produced by species 1 that can be used by species2.
-6)  z(6), dw_2: biomass waste produced by species 2 that can be used by species 1.
-7)  z(7), dr_1: biomass resource 1.
-8)  z(8) dr_2: biomass resource 2.
+6) z(6), dw_2: biomass waste produced by species 2 that can be used by species 1.
+7) z(7), dr_1: biomass resource 1.
+8) z(8) dr_2: biomass resource 2.
 
